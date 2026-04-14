@@ -1,45 +1,69 @@
 # Chapadinhos
 
-Chapadinhos is a project designed to encourage regular physical activity by setting up challenges over a specific period of time. To score points, participants need to engage in at least 30 minutes of physical activity per day.
+Plataforma web-native open-source para desafios de atividade física entre amigos. Participantes registram atividades diárias, acumulam pontos e competem em leaderboards em tempo real.
 
-Each challenge has a minimum number of points to be achieved. The winner is the one who reaches or exceeds the minimum points within the challenge period.
+## Stack
 
-## Repository structure
+- **Framework:** Next.js 15 (App Router) + TypeScript
+- **Estilo:** Tailwind CSS + shadcn/ui
+- **Backend:** Supabase (PostgreSQL + Auth + Realtime + Storage)
+- **Estado:** TanStack Query
+- **Validação:** Zod
+- **Qualidade:** Biome + Vitest + Playwright
+
+## Estrutura
 
 ```
 chapadinhos/
-├── front/   - Next.js 14 frontend (App Router, TypeScript, Tailwind)
-└── api/     - Backend API
+├── src/
+│   ├── app/               - Páginas e Route Handlers (Next.js App Router)
+│   ├── components/        - Componentes React reutilizáveis
+│   ├── lib/
+│   │   ├── supabase/      - Clientes Supabase (browser, server, middleware)
+│   │   └── query-client   - Provider do TanStack Query
+│   ├── schemas/           - Schemas de validação Zod
+│   ├── helpers/           - Utilitários
+│   └── tests/             - Testes unitários (Vitest) e E2E (Playwright)
+├── public/                - Assets estáticos
+└── specs/                 - Documentação técnica e especificações
 ```
 
-## Getting started
+## Primeiros passos
 
-Install all dependencies from the root:
+### 1. Instalar dependências
 
 ```bash
 npm install
 ```
 
-### Frontend
+### 2. Configurar variáveis de ambiente
 
 ```bash
-npm run dev:front     # dev server (localhost:3000)
-npm run build:front   # production build
-npm run lint:front    # ESLint
+cp .env.local.example .env.local
 ```
 
-Or run commands directly inside `front/`:
+Preencha `.env.local` com as credenciais do seu projeto no [Supabase](https://supabase.com):
 
-```bash
-cd front
-npm run dev
-npm run build
-npm run lint
+```
+NEXT_PUBLIC_SUPABASE_URL=https://seu-projeto.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-anon-key
 ```
 
-### API
+### 3. Iniciar o servidor de desenvolvimento
 
 ```bash
-cd api
-npm test
+npm run dev     # localhost:3000
+```
+
+## Scripts disponíveis
+
+```bash
+npm run dev         # Servidor de desenvolvimento
+npm run build       # Build de produção
+npm run start       # Servidor de produção
+npm run lint        # Biome - verifica lint e formatação
+npm run lint:fix    # Biome - corrige automaticamente
+npm run format      # Biome - formata o código
+npm run test        # Vitest - testes unitários
+npm run test:e2e    # Playwright - testes end-to-end
 ```
