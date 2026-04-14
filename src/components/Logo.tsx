@@ -1,12 +1,16 @@
 import Link from "next/link";
-import React from "react";
 
 const Logo = () => {
-  return (
-    <Link href="/" className="text-h1">
-      LOGO
-    </Link>
-  );
+	return (
+		<Link href="/" className="flex items-center font-display">
+			<span className="text-xl font-bold tracking-tight text-on-surface">
+				chapa
+			</span>
+			<span className="text-xl font-bold tracking-tight text-primary-lime">
+				.
+			</span>
+		</Link>
+	);
 };
 
 export default Logo;

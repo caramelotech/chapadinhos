@@ -3,27 +3,62 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-hex: #ebecf5;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+	/* Surface Hierarchy - Level 0 to 3 */
+	--surface: #121416;
+	--surface-lowest: #0e1012;
+	--surface-low: #1a1c1e;
+	--surface-container: #1e2022;
+	--surface-high: #282a2c;
+	--surface-highest: #2e3032;
 
-@media (prefers-color-scheme: dark) {
-  /* :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  } */
+	/* Primary */
+	--primary-lime: #caf300;
+	--on-primary: #121416;
+
+	/* Text */
+	--on-surface: #e8eaed;
+	--on-surface-muted: #9aa0a6;
+
+	/* Outline */
+	--outline-variant: rgba(255, 255, 255, 0.15);
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: var(--background-hex);
+	background: var(--surface);
+	color: var(--on-surface);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+	.text-balance {
+		text-wrap: balance;
+	}
+
+	/* Glassmorphism - for FABs and navigation overlays */
+	.glass {
+		background: rgba(40, 42, 44, 0.6);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+	}
+
+	/* Ghost border - secondary button / outline hint */
+	.ghost-border {
+		box-shadow: inset 0 0 0 1px rgba(202, 243, 0, 0.2);
+	}
+
+	.ghost-border-hover:hover {
+		box-shadow: inset 0 0 0 1px rgba(202, 243, 0, 0.5);
+	}
+
+	/* Ambient glow - floating elements */
+	.ambient-glow {
+		box-shadow: 0 0 32px rgba(176, 213, 0, 0.08);
+	}
+
+	/* Input glow - focus state replaces border */
+	.input-focus:focus {
+		box-shadow: inset 0 0 0 1px rgba(202, 243, 0, 0.35);
+		outline: none;
+	}
 }

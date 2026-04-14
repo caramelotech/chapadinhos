@@ -1,13 +1,13 @@
 export default function Layout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <main className="grid h-full place-items-center">
-      <div className="w-[450px] rounded-[20px] bg-white px-8 pb-8 pt-6 drop-shadow-lg">
-        {children}
-      </div>
-    </main>
-  );
+	return (
+		<main className="grid min-h-full place-items-center px-4">
+			<div className="w-full max-w-[440px] rounded-2xl bg-surface-low px-8 pb-10 pt-8 ambient-glow">
+				{children}
+			</div>
+		</main>
+	);
 }

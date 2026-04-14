@@ -1,17 +1,66 @@
-import { type InputHTMLAttributes } from "react";
+import clsx from "clsx";
+import type { InputHTMLAttributes } from "react";
 
-type InputProps = Pick<InputHTMLAttributes<HTMLInputElement>, "type" | "placeholder" | "value" | "onChange">;
+interface InputProps
+	extends Pick<
+		InputHTMLAttributes<HTMLInputElement>,
+		| "type"
+		| "placeholder"
+		| "value"
+		| "onChange"
+		| "name"
+		| "id"
+		| "autoComplete"
+		| "required"
+	> {
+	label?: string;
+	error?: string;
+	className?: string;
+}
 
-const Input = ({ type, placeholder, value, onChange }: InputProps) => {
-  return (
-    <input
-      className="mb-3 w-full rounded-md border border-gray-400 px-3 py-2"
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-    />
-  );
+const Input = ({
+	type,
+	placeholder,
+	value,
+	onChange,
+	name,
+	id,
+	label,
+	error,
+	className,
+	autoComplete,
+	required,
+}: InputProps) => {
+	return (
+		<div className={clsx("mb-4 flex flex-col gap-1.5", className)}>
+			{label && (
+				<label
+					htmlFor={id}
+					className="font-display text-xs font-semibold uppercase tracking-widest text-on-surface-muted"
+				>
+					{label}
+				</label>
+			)}
+			<input
+				id={id}
+				name={name}
+				type={type}
+				placeholder={placeholder}
+				value={value}
+				onChange={onChange}
+				autoComplete={autoComplete}
+				required={required}
+				className={clsx(
+					"w-full rounded-xl bg-surface-lowest px-4 py-3 text-base text-on-surface",
+					"placeholder:text-on-surface-muted/50",
+					"transition-all duration-200",
+					"input-focus",
+					error && "shadow-[inset_0_0_0_1px_rgba(239,68,68,0.5)]"
+				)}
+			/>
+			{error && <span className="text-xs text-red-400">{error}</span>}
+		</div>
+	);
 };
 
 export default Input;

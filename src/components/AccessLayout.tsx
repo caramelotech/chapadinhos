@@ -1,15 +1,21 @@
 interface AccessLayoutProps {
-  title: string;
-  subtitle: string;
-  children: React.ReactNode;
+	title: string;
+	subtitle: string;
+	children: React.ReactNode;
 }
 
-export default function AccessLayout({ title, subtitle, children }: AccessLayoutProps) {
-  return (
-    <div>
-      <h1 className="text-h2 text-center">{title}</h1>
-      <h2 className="text-h6 mb-10 text-center">{subtitle}</h2>
-      <>{children}</>
-    </div>
-  );
+export default function AccessLayout({
+	title,
+	subtitle,
+	children,
+}: AccessLayoutProps) {
+	return (
+		<div>
+			<h1 className="font-display text-display-sm font-bold tracking-tight text-on-surface">
+				{title}
+			</h1>
+			<p className="mb-8 mt-2 text-base text-on-surface-muted">{subtitle}</p>
+			{children}
+		</div>
+	);
 }
